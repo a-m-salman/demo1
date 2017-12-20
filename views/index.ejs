@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MY APP</title>
+</head>
+<body>
+ 
+
+  <table >
+  <tr>
+      <td>Name</td>
+      <td>Age</td>
+      <td>Gender</td>
+    </tr>
+  <% for(var i=0; i<users.length; i++) {%>
+    <tr >
+      <td><%= users[i].name %></td>
+      <td><%= users[i].age %></td>
+      <td><%= users[i].gender %></td>
+    </tr>
+  <% } %>
+  </table>
+
+
+</body>
+</html>

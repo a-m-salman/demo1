@@ -1,10 +1,28 @@
 var express = require('express');
-var app = express();
-var fs = require('fs');
+const bodyParser= require('body-parser')
+const app = express()
 
-app.get('/', function (req, res) {
-    res.sendFile( __dirname + "/" + "test.html" );
-})
+app.set('view engine', 'ejs')
+app.use(bodyParser.urlencoded({extended: true}))
+var assert= require('assert');
+const MongoClient = require('mongodb').MongoClient
+
+var url = "mongodb://localhost:27017/user";
+
+
+MongoClient.connect(url, (err, database) => {
+   if (err) return console.log(err);
+	  db = database;
+	  app.get('/', (req, res) => {
+				 db.db("user").collection('user').find().toArray(function(err, results) {
+				  
+    			res.render('index.ejs', {users: results})
+				})
+
+
+
+		})
+  });
 
 var server = app.listen(8081, function () {
    var host = server.address().address
